@@ -23,4 +23,11 @@
     "url": "https://github.com/Parth-243/fast-food-backend/issues"
   },
   "homepage": "https://github.com/Parth-243/fast-food-backend#readme"
+  "homepage": "https://github.com/Parth-243/fast-food-backend#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=20.15.0"
+  }
 }
