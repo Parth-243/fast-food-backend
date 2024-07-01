@@ -1,0 +1,26 @@
+{
+  "name": "fast-food-backend",
+  "version": "1.0.0",
+  "description": "Fast food delivery app backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Parth-243/fast-food-backend.git"
+  },
+  "keywords": [
+    "fast-food",
+    "backend",
+    "delivery",
+    "nodejs",
+    "express"
+  ],
+  "author": "Parth Shrivastava",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Parth-243/fast-food-backend/issues"
+  },
+  "homepage": "https://github.com/Parth-243/fast-food-backend#readme"
+}
