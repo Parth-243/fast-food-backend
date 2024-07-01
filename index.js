@@ -1,4 +1,5 @@
 const express = require('express');
+const config = require('./config');
 
 // Initialize express instance
 const app = express();
@@ -12,5 +13,4 @@ app.all('*', (request, response) =>
     response.status(404).send('Resource not found.')
 );
 
-const port = process.env.PORT || 8000;
-app.listen(port, () => console.info(`Server up and running on port ${port} !`));
+app.listen(config.PORT, () => console.info(`Server up and running on port ${config.PORT} !`));
