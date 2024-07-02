@@ -1,6 +1,14 @@
 const express = require('express');
 const config = require('./config');
 
+// Initialize mongodb connection
+mongoose
+  .connect(config.MONGO_URI)
+  .then(() => console.info('MongoDB successfully connected'))
+  .catch((err) => console.error(err));
+
+mongoose.set('debug', process.env.NODE_ENV === 'development');
+
 // Initialize express instance
 const app = express();
 
