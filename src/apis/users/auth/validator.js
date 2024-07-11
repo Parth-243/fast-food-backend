@@ -8,6 +8,14 @@ exports.validateRegister = [
     .isLength({ min: MIN_PASSWORD_LENGTH })
     .withMessage(
       `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`
+    )
+    .matches(/[A-Z]/)
+    .withMessage('Password must contain at least one uppercase letter')
+    .matches(/\d/)
+    .withMessage('Password must contain at least one digit')
+    .matches(/[@$!%*?&]/)
+    .withMessage(
+      'Password must contain at least one special symbol (@, $, !, %, *, ?, &)'
     ),
   check('confirmPassword')
     .custom((value, { req }) => value === req.body.password)
