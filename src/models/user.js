@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const { USER_ROLES } = require('../../config');
 
 const UserSchema = new Schema(
   {
@@ -29,10 +30,13 @@ const UserSchema = new Schema(
       },
     },
     role: { type: String, enum: ['user', 'admin'], default: 'user' }, // Add more roles as needed
+    role: {
+      type: String,
+      enum: Object.values(USER_ROLES),
+      default: USER_ROLES.USER,
+    },
   },
-  {
-    timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },
-  }
+  { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
 // Pre-save hook to hash the password before saving the user model
