@@ -10,11 +10,15 @@ const passwordRegex = new RegExp(
 
 const UserSchema = new Schema(
   {
-    username: { type: String, required: true, unique: true },
+    username: {
+      type: String,
+      required: true,
+      set: (value) => value.toLowerCase(),
+    },
     email: {
       type: String,
       required: true,
-      unique: true,
+      set: (value) => value.toLowerCase(),
       validate: {
         validator: (value) => validator.isEmail(value),
         message: 'Invalid email address',
