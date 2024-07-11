@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const validator = require('validator');
-const { USER_ROLES } = require('../../config');
+const { USER_ROLES, MIN_PASSWORD_LENGTH } = require('../../config');
+
+const passwordRegex = new RegExp(
+  `^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{${MIN_PASSWORD_LENGTH},}$`
+);
 
 const UserSchema = new Schema(
   {
@@ -19,17 +23,12 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true,
-      minlength: 8,
+      minlength: MIN_PASSWORD_LENGTH,
       validate: {
-        validator: (value) => {
-          // Password must contain at least one letter and one number
-          return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value);
-        },
-        message:
-          'Password must be at least 8 characters long and contain at least one letter and one number',
+        validator: (value) => passwordRegex.test(value),
+        message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters long and contain at least one letter, one number, and one special character`,
       },
     },
-    role: { type: String, enum: ['user', 'admin'], default: 'user' }, // Add more roles as needed
     role: {
       type: String,
       enum: Object.values(USER_ROLES),
