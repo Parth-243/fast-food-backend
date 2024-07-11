@@ -1,4 +1,4 @@
-const { login, register } = require('./services');
+const { login, register, logout } = require('./services');
 const { USER_ROLES } = require('../../../../config');
 
 // User login
@@ -36,4 +36,13 @@ async function userRegister(req, res) {
   }
 }
 
-module.exports = { userLogin, userRegister };
+async function userLogout(req, res) {
+  try {
+    const response = await logout(res);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
+module.exports = { userLogin, userRegister, userLogout };
