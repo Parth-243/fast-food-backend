@@ -42,6 +42,10 @@ const UserSchema = new Schema(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
+// Create compound indexes for email and username based on the value of role
+UserSchema.index({ username: 1, role: 1 }, { unique: true });
+UserSchema.index({ email: 1, role: 1 }, { unique: true });
+
 // Pre-save hook to hash the password before saving the user model
 UserSchema.pre('save', async function (next) {
   if (this.isModified('password') || this.isNew) {
