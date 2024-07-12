@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const routes = require('./routes');
 const config = require('./config');
 
@@ -14,7 +15,10 @@ mongoose.set('debug', process.env.NODE_ENV === 'development');
 // Initialize express instance
 const app = express();
 
-// parse body params and attache them to req.body
+// Enable CORS for all origins
+app.use(cors());
+
+// parse body params and attach them to req.body
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
