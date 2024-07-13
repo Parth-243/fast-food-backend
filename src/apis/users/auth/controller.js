@@ -1,4 +1,4 @@
-const { login, register, logout } = require('./services');
+const { login, register, logout } = require('../../common/services/auth');
 const { USER_ROLES } = require('../../../../config');
 
 // User login
@@ -24,6 +24,7 @@ async function userRegister(req, res) {
       password,
       role: USER_ROLES.USER,
     });
+    res.cookie('x-access-token', user.token);
     res.status(201).json(user);
   } catch (error) {
     let errors = {};
