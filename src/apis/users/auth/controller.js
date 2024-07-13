@@ -1,12 +1,14 @@
 const { login, register, logout } = require('../../common/services/auth');
 const { USER_ROLES } = require('../../../../config');
 
+const ROLE = USER_ROLES.USER;
+
 // User login
 async function userLogin(req, res) {
   try {
     const { email, username, password } = req.body;
     const identifier = email || username;
-    const user = await login({ identifier, password, role: USER_ROLES.USER });
+    const user = await login({ identifier, password, role: ROLE });
     res.cookie('x-access-token', user.token);
     res.status(200).json(user);
   } catch (error) {
@@ -22,7 +24,7 @@ async function userRegister(req, res) {
       username,
       email,
       password,
-      role: USER_ROLES.USER,
+      role: ROLE,
     });
     res.cookie('x-access-token', user.token);
     res.status(201).json(user);
