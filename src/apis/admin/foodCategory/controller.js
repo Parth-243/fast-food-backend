@@ -111,10 +111,7 @@ exports.uploadFoodCategoryPicture = async (req, res) => {
     foodCategory.picture = fileUrl;
     await foodCategory.save();
 
-    res.status(200).json({
-      message: 'Food category picture uploaded successfully.',
-      url: fileUrl,
-    });
+    res.status(200).json(foodCategory);
   } catch (error) {
     console.error('Error uploading food category picture:', error.message);
     res.status(422).send({ error: error.message });
