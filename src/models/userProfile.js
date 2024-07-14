@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { PHONE_NUMBER_LENGTH, GENDERS } = require('../../config');
 
-const phoneRegex = new RegExp(`^\d{${PHONE_NUMBER_LENGTH}}$`);
-
 const UserProfileSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
@@ -17,13 +15,7 @@ const UserProfileSchema = new Schema(
     },
     mobile: {
       type: String,
-      required: true,
-      trim: true,
-      validate: {
-        validator: (value) => phoneRegex.test(value),
-        message: (props) =>
-          `${props.value} is not a valid ${PHONE_NUMBER_LENGTH}-digit mobile number!`,
-      },
+      minlength: PHONE_NUMBER_LENGTH,
     },
     address: { type: String, required: true, trim: true, maxlength: 200 },
     state: {
