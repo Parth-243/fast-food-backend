@@ -2,7 +2,7 @@ const { check, validationResult } = require('express-validator');
 const { INDIAN_STATES_AND_CITIES } = require('../../../../config');
 const { GENDERS } = require('../../../../config');
 
-exports.validateCreateRestaurant = [
+exports.validateCreateUserProfile = [
   check('firstName')
     .notEmpty()
     .withMessage('First name is required')
