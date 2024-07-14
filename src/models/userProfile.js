@@ -30,8 +30,9 @@ const UserProfileSchema = new Schema(
       type: String,
       required: true,
     },
-    profilePicture: {
+    picture: {
       type: String,
+      default: null,
       required: false,
       validate: {
         validator: function (v) {
