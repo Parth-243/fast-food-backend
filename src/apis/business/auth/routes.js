@@ -4,11 +4,11 @@ const {
   validateLogin,
   validateRegister,
 } = require('../../common/validator/auth');
-const authenticateUser = require('../../middleware/authenticateUser');
+const authenticateBUser = require('../../middleware/authenticateBUser');
 
 router.post('/login', validateLogin, controller.bUserLogin);
 router.post('/register', validateRegister, controller.bUserRegister);
-router.get('/user', authenticateUser, controller.getBUser);
+router.get('/user', authenticateBUser, controller.getBUser);
 router.post('/logout', controller.bUserLogout);
 
 module.exports = router;
