@@ -33,10 +33,9 @@ const UserProfileSchema = new Schema(
     picture: {
       type: String,
       default: null,
-      required: false,
       validate: {
         validator: function (v) {
-          return /^(http|https):\/\/[^\s$.?#].[^\s]*$/.test(v);
+          return v === null || /^(http|https):\/\/[^\s$.?#].[^\s]*$/.test(v);
         },
         message: (props) => `${props.value} is not a valid URL!`,
       },
