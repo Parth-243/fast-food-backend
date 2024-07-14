@@ -8,7 +8,7 @@ exports.createRestaurant = async (req, res) => {
     await restaurant.save();
     res.status(201).send(restaurant);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: error.message });
   }
 };
 
@@ -19,7 +19,7 @@ exports.getAllRestaurants = async (req, res) => {
     const restaurants = await Restaurant.find({ userId });
     res.status(200).send(restaurants);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(422).send({ error: error.message });
   }
 };
 
@@ -35,7 +35,7 @@ exports.getRestaurantById = async (req, res) => {
     }
     res.status(200).send(restaurant);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(422).send({ error: error.message });
   }
 };
 
@@ -75,7 +75,7 @@ exports.updateRestaurantById = async (req, res) => {
 
     res.status(200).send(restaurant);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).send({ error: error.message });
   }
 };
 
@@ -93,6 +93,6 @@ exports.deleteRestaurantById = async (req, res) => {
 
     res.status(200).send(restaurant);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(422).send({ error: error.message });
   }
 };
