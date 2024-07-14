@@ -9,6 +9,10 @@ const RestaurantSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      default: null,
+      type: String,
+    },
     mobile: {
       type: String,
       minlength: PHONE_NUMBER_LENGTH,
@@ -38,6 +42,16 @@ const RestaurantSchema = new Schema(
     postalCode: {
       type: String,
       required: true,
+    },
+    picture: {
+      type: String,
+      default: null,
+      validate: {
+        validator: function (v) {
+          return v === null || /^(http|https):\/\/[^\s$.?#].[^\s]*$/.test(v);
+        },
+        message: (props) => `${props.value} is not a valid URL!`,
+      },
     },
   },
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
