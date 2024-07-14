@@ -3,6 +3,10 @@ const { INDIAN_STATES_AND_CITIES } = require('../../../../config');
 
 exports.validateCreateRestaurant = [
   check('name').notEmpty().withMessage('Name is required'),
+  check('description')
+    .optional()
+    .notEmpty()
+    .withMessage('Description cannot be empty'),
   check('mobile')
     .isMobilePhone(['en-IN'])
     .withMessage('Please enter a valid mobile number'),
@@ -60,6 +64,10 @@ exports.validateCreateRestaurant = [
 
 exports.validateUpdateRestaurant = [
   check('name').optional().notEmpty().withMessage('Name cannot be empty'),
+  check('description')
+    .optional()
+    .notEmpty()
+    .withMessage('Description cannot be empty'),
   check('mobile')
     .optional()
     .isMobilePhone(['en-IN'])
