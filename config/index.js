@@ -9,8 +9,19 @@ const config = {
   JWT_EXPIRY_TIME: env.JWT_EXPIRY_TIME || '1h',
   MIN_PASSWORD_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 8, 10),
   PHONE_NUMBER_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 10, 10),
+  MINIO_ENDPOINT: env.MINIO_ENDPOINT,
+  MINIO_PORT: parseInt(env.MINIO_PORT || 9000, 10),
+  MINIO_ACCESS_KEY: env.MINIO_ACCESS_KEY,
+  MINIO_SECRET_KEY: env.MINIO_SECRET_KEY,
+  MINIO_USER_BUCKET: env.MINIO_USER_BUCKET,
+  MINIO_RESTAURANT_BUCKET: env.MINIO_RESTAURANT_BUCKET,
+  TEMP_UPLOAD_DIR: env.TEMP_UPLOAD_DIR,
+
   USER_ROLES: { USER: 'user', B_USER: 'businessUser', ADMIN: 'admin' },
   GENDERS: { MALE: 'male', FEMALE: 'female', OTHER: 'other' },
+  ALLOWED_IMAGE_TYPES: ['image/jpeg', 'image/png'],
+  MAX_IMAGE_FILE_SIZE_IN_MB:
+    parseInt(env.MAX_IMAGE_FILE_SIZE_IN_MB || 5, 10) * 1024 * 1024,
   INDIAN_STATES_AND_CITIES: {
     'Andhra Pradesh': [
       'Visakhapatnam',

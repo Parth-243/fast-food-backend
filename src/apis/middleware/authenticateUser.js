@@ -12,7 +12,7 @@ const authenticateUser = async (req, res, next) => {
   }
 
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized!' });
+    return res.status(401).json({ error: 'Unauthorized!' });
   }
 
   try {
@@ -21,14 +21,14 @@ const authenticateUser = async (req, res, next) => {
     const user = await getUserById(id);
 
     if (!user) {
-      return res.status(401).json({ message: 'User not found!' });
+      return res.status(401).json({ error: 'User not found!' });
     }
 
     req.user = user;
 
     return next();
   } catch (err) {
-    return res.status(401).json({ message: err.message });
+    return res.status(401).json({ error: err.message });
   }
 };
 
