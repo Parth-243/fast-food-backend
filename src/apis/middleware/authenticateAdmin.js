@@ -20,7 +20,7 @@ const authenticateUser = async (req, res, next) => {
 
     const user = await getUserById(id);
 
-    if (!user || user.role !== USER_ROLES.USER) {
+    if (!user || user.role !== USER_ROLES.ADMIN) {
       return res.status(401).json({ error: 'User not found!' });
     }
 
