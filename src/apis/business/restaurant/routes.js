@@ -5,6 +5,17 @@ const {
   validateUpdateRestaurant,
 } = require('./validator');
 const authenticateUser = require('../../middleware/authenticateUser');
+const createMulterConfig = require('../../middleware/multerConfig');
+const {
+  ALLOWED_IMAGE_TYPES,
+  MAX_IMAGE_FILE_SIZE_IN_MB,
+} = require('../../../../config');
+
+const uploadConfig = createMulterConfig(
+  MAX_IMAGE_FILE_SIZE_IN_MB * 1024 * 1024,
+  1,
+  ALLOWED_IMAGE_TYPES
+);
 
 // Apply the middleware to all routes
 router.use(authenticateUser);
@@ -20,6 +31,12 @@ router.get('/:id', controller.getRestaurantById);
 
 // Update a restaurant by ID
 router.put('/:id', validateUpdateRestaurant, controller.updateRestaurantById);
+
+router.post(
+  '/picture/:id',
+  uploadConfig.single('file'),
+  controller.uploadRestaurantPicture
+);
 
 // Delete a restaurant by ID
 router.delete('/:id', controller.deleteRestaurantById);
