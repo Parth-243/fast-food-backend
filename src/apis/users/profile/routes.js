@@ -10,6 +10,6 @@ router.use(authenticateUser);
 
 router.post('/', validateCreateUserProfile, controller.createUserProfile);
 router.get('/', controller.getUserProfile);
-router.put('/:id', validateUpdateUserProfile, controller.updateUserProfile);
+router.put('/', validateUpdateUserProfile, controller.updateUserProfile);
 
 module.exports = router;
