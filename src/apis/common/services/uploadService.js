@@ -55,7 +55,7 @@ const uploadFiles = async (bucketName, files) => {
   }
 
   const fileUploadPromises = files.map((file) =>
-    uploadFile(bucketName, file.filename, file.path)
+    uploadFile(bucketName, file.filename.replace(/\s+/g, '-'), file.path)
   );
 
   return Promise.all(fileUploadPromises);
