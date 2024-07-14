@@ -80,3 +80,91 @@ exports.validateCreateRestaurant = [
     next();
   },
 ];
+
+exports.validateUpdateUserProfile = [
+  check('firstName')
+    .optional()
+    .notEmpty()
+    .withMessage('First name cannot be empty')
+    .trim()
+    .isLength({ max: 100 })
+    .withMessage('First name must be less than 100 characters'),
+  check('lastName')
+    .optional()
+    .notEmpty()
+    .withMessage('Last name cannot be empty')
+    .trim()
+    .isLength({ max: 100 })
+    .withMessage('Last name must be less than 100 characters'),
+  check('dob')
+    .optional()
+    .notEmpty()
+    .withMessage('Date of birth cannot be empty')
+    .isISO8601()
+    .withMessage('Date of birth must be in ISO 8601 format (YYYY-MM-DD)'),
+  check('gender')
+    .optional()
+    .notEmpty()
+    .withMessage('Gender cannot be empty')
+    .isIn(Object.values(GENDERS))
+    .withMessage('Invalid gender'),
+  check('mobile')
+    .optional()
+    .notEmpty()
+    .withMessage('Mobile number cannot be empty')
+    .isMobilePhone(['en-IN'])
+    .withMessage('Please enter a valid mobile number'),
+  check('address')
+    .optional()
+    .notEmpty()
+    .withMessage('Address cannot be empty')
+    .trim()
+    .isLength({ max: 200 })
+    .withMessage('Address must be less than 200 characters'),
+  check('state')
+    .optional()
+    .notEmpty()
+    .withMessage('State cannot be empty')
+    .custom((value) => {
+      if (!Object.keys(INDIAN_STATES_AND_CITIES).includes(value)) {
+        throw new Error('Invalid state');
+      }
+      return true;
+    }),
+  check('city')
+    .optional()
+    .notEmpty()
+    .withMessage('City cannot be empty')
+    .custom((value, { req }) => {
+      const stateErrors = validationResult(req)
+        .array()
+        .filter((err) => err.path === 'state');
+      if (stateErrors.length > 0) {
+        throw new Error('Please select a valid state first');
+      }
+      if (
+        req.body.state &&
+        !INDIAN_STATES_AND_CITIES[req.body.state].includes(value)
+      ) {
+        throw new Error('Invalid city for the provided state');
+      }
+      return true;
+    }),
+  check('postalCode')
+    .optional()
+    .notEmpty()
+    .withMessage('Postal code cannot be empty')
+    .isPostalCode('IN') // Use 'IN' for Indian postal codes
+    .withMessage('Please enter a valid postal code'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const extractedErrors = {};
+      errors.array().forEach((err) => {
+        extractedErrors[err.path] = err.msg;
+      });
+      return res.status(400).json(extractedErrors);
+    }
+    next();
+  },
+];
