@@ -8,8 +8,14 @@ async function adminLogin(req, res) {
   try {
     const { email, username, password } = req.body;
     const identifier = email || username;
-    const user = await login({ identifier, password, role: ROLE });
-    res.cookie('x-access-token', user.token);
+    const { user, token } = await login({ identifier, password, role: ROLE });
+
+    res.cookie('x-access-token', token, {
+      httpOnly: true, // This ensures the cookie is only accessible by the web server
+      secure: process.env.NODE_ENV === 'production', // Ensure the cookie is sent only over HTTPS in production
+      sameSite: 'strict', // Adjust this based on your requirements
+    });
+
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -20,13 +26,19 @@ async function adminLogin(req, res) {
 async function adminRegister(req, res) {
   try {
     const { username, email, password } = req.body;
-    const user = await register({
+    const { user, token } = await register({
       username,
       email,
       password,
       role: ROLE,
     });
-    res.cookie('x-access-token', user.token);
+
+    res.cookie('x-access-token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+    });
+
     res.status(201).json(user);
   } catch (error) {
     let errors = {};
@@ -39,6 +51,14 @@ async function adminRegister(req, res) {
   }
 }
 
+async function getAdminUser(req, res) {
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 async function adminLogout(req, res) {
   try {
     const response = await logout(res);
@@ -48,4 +68,4 @@ async function adminLogout(req, res) {
   }
 }
 
-module.exports = { adminLogin, adminRegister, adminLogout };
+module.exports = { adminLogin, adminRegister, getAdminUser, adminLogout };
