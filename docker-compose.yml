@@ -16,8 +16,25 @@ services:
       - mongo_net
     command: mongod --auth --bind_ip 0.0.0.0
 
+  minio:
+    image: minio/minio
+    container_name: minio
+    restart: always
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    volumes:
+      - minio-data:/data
+    ports:
+      - "${MINIO_PORT}:9000"
+    networks:
+      - mongo_net
+    command: server /data
+
 volumes:
   mongo-data:
+    driver: local
+  minio-data:
     driver: local
 
 networks:
