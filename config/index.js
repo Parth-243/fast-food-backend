@@ -10,6 +10,7 @@ const config = {
   MIN_PASSWORD_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 8, 10),
   PHONE_NUMBER_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 10, 10),
   USER_ROLES: { USER: 'user', B_USER: 'businessUser', ADMIN: 'admin' },
+  GENDERS: { MALE: 'male', FEMALE: 'female', OTHER: 'other' },
   INDIAN_STATES_AND_CITIES: {
     'Andhra Pradesh': [
       'Visakhapatnam',

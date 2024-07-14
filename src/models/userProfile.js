@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { PHONE_NUMBER_LENGTH } = require('../../config');
+const { PHONE_NUMBER_LENGTH, GENDERS } = require('../../config');
 
 const phoneRegex = new RegExp(`^\d{${PHONE_NUMBER_LENGTH}}$`);
 
@@ -10,10 +10,9 @@ const UserProfileSchema = new Schema(
     firstName: { type: String, required: true, trim: true, maxlength: 100 },
     lastName: { type: String, required: true, trim: true, maxlength: 100 },
     dob: { type: Date, required: true },
-    address: { type: String, required: true, trim: true, maxlength: 200 },
     gender: {
       type: String,
-      enum: ['Male', 'Female', 'Other'],
+      enum: Object.values(GENDERS),
       required: true,
     },
     mobile: {
@@ -22,17 +21,31 @@ const UserProfileSchema = new Schema(
       trim: true,
       validate: {
         validator: (value) => phoneRegex.test(value),
-        message: '{VALUE} is not a valid 10-digit mobile number!',
+        message: (props) =>
+          `${props.value} is not a valid ${PHONE_NUMBER_LENGTH}-digit mobile number!`,
       },
+    },
+    address: { type: String, required: true, trim: true, maxlength: 200 },
+    state: {
+      type: String,
+      required: true,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    postalCode: {
+      type: String,
+      required: true,
     },
     profilePicture: {
       type: String,
       required: false,
       validate: {
         validator: function (v) {
-          return /^(http|https):\/\/[^ "]+$/.test(v);
+          return /^(http|https):\/\/[^\s$.?#].[^\s]*$/.test(v);
         },
-        message: '{VALUE} is not a valid URL!',
+        message: (props) => `${props.value} is not a valid URL!`,
       },
     },
   },
