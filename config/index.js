@@ -17,6 +17,8 @@ const config = {
   MINIO_RESTAURANT_BUCKET: env.MINIO_RESTAURANT_BUCKET,
   TEMP_UPLOAD_DIR: env.TEMP_UPLOAD_DIR,
 
+  ALLOWED_ORIGINS: ['http://localhost:3000', 'http://0.0.0.0:3000'],
+
   USER_ROLES: { USER: 'user', B_USER: 'businessUser', ADMIN: 'admin' },
   GENDERS: { MALE: 'male', FEMALE: 'female', OTHER: 'other' },
   ALLOWED_IMAGE_TYPES: ['image/jpeg', 'image/png'],
