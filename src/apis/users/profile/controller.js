@@ -11,10 +11,12 @@ const ROLE = USER_ROLES.USER;
 exports.createUserProfile = async (req, res) => {
   try {
     const { _id: userId, role } = req.user;
-    if (role !== ROLE) {
-      return res.status(401).send({ error: 'Unauthorized' });
+    let userProfile = await UserProfile.findOne({ userId });
+    if (userProfile) {
+      return await this.updateUserProfile(req, res);
+      // return res.status(400).send({ error: 'User profile already exists' });
     }
-    const userProfile = new UserProfile(req.body);
+    userProfile = new UserProfile(req.body);
     userProfile.userId = userId;
     await userProfile.save();
     res.status(201).send(userProfile);
@@ -118,10 +120,7 @@ exports.uploadPicture = async (req, res) => {
     userProfile.picture = fileUrl;
     await userProfile.save();
 
-    res.status(200).json({
-      message: 'Profile picture uploaded successfully.',
-      url: fileUrl,
-    });
+    res.status(200).json(userProfile);
   } catch (error) {
     console.error('Error uploading profile picture:', error.message);
     res.status(422).send({ error: error.message });
