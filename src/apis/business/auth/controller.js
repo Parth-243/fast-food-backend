@@ -51,6 +51,14 @@ async function bUserRegister(req, res) {
   }
 }
 
+async function getBUser(req, res) {
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 async function bUserLogout(req, res) {
   try {
     const response = await logout(res);
@@ -63,5 +71,6 @@ async function bUserLogout(req, res) {
 module.exports = {
   bUserLogin,
   bUserRegister,
+  getBUser,
   bUserLogout,
 };
