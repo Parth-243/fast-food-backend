@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { MIN_PHONE_LENGTH } = require('../../config');
+const { PHONE_NUMBER_LENGTH } = require('../../config');
 
 const RestaurantSchema = new Schema(
   {
@@ -11,7 +11,7 @@ const RestaurantSchema = new Schema(
     },
     mobile: {
       type: String,
-      minlength: MIN_PHONE_LENGTH,
+      minlength: PHONE_NUMBER_LENGTH,
     },
     opensAt: {
       type: String,
@@ -43,7 +43,7 @@ const RestaurantSchema = new Schema(
   { timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' } }
 );
 
-// Removing the sensitive information from the user json
+// Removing the sensitive information from the restaurant json
 RestaurantSchema.methods.toJSON = function () {
   const restaurantObject = this.toObject();
   delete restaurantObject.__v;

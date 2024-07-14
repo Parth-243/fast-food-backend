@@ -8,7 +8,7 @@ const config = {
   JWT_SECRET: env.JWT_SECRET,
   JWT_EXPIRY_TIME: env.JWT_EXPIRY_TIME || '1h',
   MIN_PASSWORD_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 8, 10),
-  MIN_PHONE_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 10, 10),
+  PHONE_NUMBER_LENGTH: parseInt(env.MIN_PASSWORD_LENGTH || 10, 10),
   USER_ROLES: { USER: 'user', B_USER: 'businessUser', ADMIN: 'admin' },
   INDIAN_STATES_AND_CITIES: {
     'Andhra Pradesh': [
