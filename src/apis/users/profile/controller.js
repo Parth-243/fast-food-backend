@@ -1,6 +1,6 @@
 const UserProfile = require('../../../models/userProfile');
 
-// Create a new user profile
+// Create the user profile for the logged-in user
 exports.createUserProfile = async (req, res) => {
   try {
     const userProfile = new UserProfile(req.body);
@@ -28,7 +28,7 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
-// Update a user profile by ID
+// Update the user profile for the logged-in user
 exports.updateUserProfile = async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = [
