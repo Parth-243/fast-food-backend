@@ -4,8 +4,8 @@ const {
   validateCreateUserProfile,
   validateUpdateUserProfile,
 } = require('./validator');
-const authenticateUser = require('../../middleware/authenticateUser');
-const createMulterConfig = require('../../middleware/multerConfig');
+const authenticateUser = require('../../../middleware/authenticateUser');
+const createMulterConfig = require('../../../middleware/multerConfig');
 const {
   ALLOWED_IMAGE_TYPES,
   MAX_IMAGE_FILE_SIZE_IN_MB,

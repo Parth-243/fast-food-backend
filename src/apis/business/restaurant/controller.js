@@ -3,7 +3,7 @@ const { USER_ROLES, MINIO_RESTAURANT_BUCKET } = require('../../../../config');
 const {
   uploadFiles,
   deleteFile,
-} = require('../../common/services/uploadService');
+} = require('../../../common/services/uploadService');
 
 const ROLE = USER_ROLES.B_USER;
 
@@ -38,7 +38,7 @@ exports.getRestaurantById = async (req, res) => {
       userId: req.user._id,
     });
     if (!restaurant) {
-      return res.status(404).send();
+      return res.status(404).send({ error: 'Restaurant not found!' });
     }
     res.status(200).send(restaurant);
   } catch (error) {
@@ -74,7 +74,7 @@ exports.updateRestaurantById = async (req, res) => {
     });
 
     if (!restaurant) {
-      return res.status(404).send();
+      return res.status(404).send({ error: 'Restaurant not found!' });
     }
 
     updates.forEach((update) => (restaurant[update] = req.body[update]));
@@ -95,7 +95,7 @@ exports.deleteRestaurantById = async (req, res) => {
     });
 
     if (!restaurant) {
-      return res.status(404).send();
+      return res.status(404).send({ error: 'Restaurant not found!' });
     }
 
     res.status(200).send(restaurant);

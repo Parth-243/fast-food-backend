@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { TEMP_UPLOAD_DIR } = require('../../../config/index');
+const { TEMP_UPLOAD_DIR } = require('../../config/index');
 
 const createMulterConfig = (maxFileSize, maxFiles, allowedFileTypes) => {
   const uploadDir = path.join(__dirname, TEMP_UPLOAD_DIR);

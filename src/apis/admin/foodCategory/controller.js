@@ -2,7 +2,7 @@ const FoodCategory = require('../../../models/foodCategory');
 const {
   uploadFiles,
   deleteFile,
-} = require('../../common/services/uploadService');
+} = require('../../../common/services/uploadService');
 const { MINIO_RESTAURANT_BUCKET } = require('../../../../config');
 
 // Create a new food category
@@ -31,7 +31,7 @@ exports.getFoodCategoryById = async (req, res) => {
   try {
     const foodCategory = await FoodCategory.findById(req.params.id);
     if (!foodCategory) {
-      return res.status(404).send();
+      return res.status(404).send({ error: 'Food category not found' });
     }
     res.status(200).send(foodCategory);
   } catch (error) {
@@ -55,7 +55,7 @@ exports.updateFoodCategoryById = async (req, res) => {
     const foodCategory = await FoodCategory.findById(req.params.id);
 
     if (!foodCategory) {
-      return res.status(404).send();
+      return res.status(404).send({ error: 'Food category not found' });
     }
 
     updates.forEach((update) => (foodCategory[update] = req.body[update]));
@@ -73,7 +73,7 @@ exports.deleteFoodCategoryById = async (req, res) => {
     const foodCategory = await FoodCategory.findByIdAndDelete(req.params.id);
 
     if (!foodCategory) {
-      return res.status(404).send();
+      return res.status(404).send({ error: 'Food category not found' });
     }
 
     res.status(200).send(foodCategory);

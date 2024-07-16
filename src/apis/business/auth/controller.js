@@ -1,4 +1,8 @@
-const { login, register, logout } = require('../../common/services/auth');
+const {
+  login,
+  register,
+  logout,
+} = require('../../../common/services/authService');
 const { USER_ROLES } = require('../../../../config');
 
 const ROLE = USER_ROLES.B_USER;

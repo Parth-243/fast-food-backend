@@ -1,4 +1,4 @@
-const minioClient = require('../../../utils/minioClient');
+const minioClient = require('../../utils/minioClient');
 const fs = require('fs').promises;
 
 const generateBucketPolicy = (bucketName) => {

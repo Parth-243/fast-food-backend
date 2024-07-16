@@ -4,8 +4,8 @@ const {
   validateCreateFoodCategory,
   validateUpdateFoodCategory,
 } = require('./validator');
-const authenticateAdmin = require('../../middleware/authenticateAdmin');
-const createMulterConfig = require('../../middleware/multerConfig');
+const authenticateAdmin = require('../../../middleware/authenticateAdmin');
+const createMulterConfig = require('../../../middleware/multerConfig');
 const {
   ALLOWED_IMAGE_TYPES,
   MAX_IMAGE_FILE_SIZE_IN_MB,

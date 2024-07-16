@@ -3,8 +3,8 @@ const controller = require('./controller');
 const {
   validateLogin,
   validateRegister,
-} = require('../../common/validator/auth');
-const authenticateUser = require('../../middleware/authenticateUser');
+} = require('../../../common/validator/authValidator');
+const authenticateUser = require('../../../middleware/authenticateUser');
 
 router.post('/login', validateLogin, controller.userLogin);
 router.post('/register', validateRegister, controller.userRegister);

@@ -3,7 +3,7 @@ const { USER_ROLES, MINIO_USER_BUCKET } = require('../../../../config');
 const {
   uploadFiles,
   deleteFile,
-} = require('../../common/services/uploadService');
+} = require('../../../common/services/uploadService');
 
 const ROLE = USER_ROLES.USER;
 

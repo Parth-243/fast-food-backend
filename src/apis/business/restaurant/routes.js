@@ -4,8 +4,8 @@ const {
   validateCreateRestaurant,
   validateUpdateRestaurant,
 } = require('./validator');
-const authenticateBUser = require('../../middleware/authenticateBUser');
-const createMulterConfig = require('../../middleware/multerConfig');
+const authenticateBUser = require('../../../middleware/authenticateBUser');
+const createMulterConfig = require('../../../middleware/multerConfig');
 const {
   ALLOWED_IMAGE_TYPES,
   MAX_IMAGE_FILE_SIZE_IN_MB,

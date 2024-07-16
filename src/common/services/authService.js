@@ -1,8 +1,11 @@
-const User = require('../../../models/user');
+const User = require('../../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { findUserByIdentifier, findUserByUsernameOrEmail } = require('./user');
-const { JWT_SECRET, JWT_EXPIRY_TIME } = require('../../../../config');
+const {
+  findUserByIdentifier,
+  findUserByUsernameOrEmail,
+} = require('./userService');
+const { JWT_SECRET, JWT_EXPIRY_TIME } = require('../../../config');
 
 exports.login = async ({ identifier, password, role }) => {
   const user = await findUserByIdentifier(identifier, role);

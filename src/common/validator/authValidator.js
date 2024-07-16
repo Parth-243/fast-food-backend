@@ -1,5 +1,5 @@
 const { check, validationResult, body } = require('express-validator');
-const { MIN_PASSWORD_LENGTH } = require('../../../../config');
+const { MIN_PASSWORD_LENGTH } = require('../../../config');
 
 exports.validateLogin = [
   body().custom((body) => {
