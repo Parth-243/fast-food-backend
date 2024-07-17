@@ -1,19 +1,16 @@
 const multer = require('multer');
-const path = require('path');
 const fs = require('fs');
 const { TEMP_UPLOAD_DIR } = require('../../config/index');
 
 const createMulterConfig = (maxFileSize, maxFiles, allowedFileTypes) => {
-  const uploadDir = path.join(__dirname, TEMP_UPLOAD_DIR);
-
   // Ensure the uploads folder exists
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
+  if (!fs.existsSync(TEMP_UPLOAD_DIR)) {
+    fs.mkdirSync(TEMP_UPLOAD_DIR, { recursive: true });
   }
 
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, uploadDir);
+      cb(null, TEMP_UPLOAD_DIR);
     },
     filename: (req, file, cb) => {
       cb(null, `${Date.now()}-${file.originalname}`);
