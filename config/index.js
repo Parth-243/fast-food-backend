@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 
 const { env } = process;
 
@@ -15,7 +16,10 @@ const config = {
   MINIO_SECRET_KEY: env.MINIO_SECRET_KEY,
   MINIO_USER_BUCKET: env.MINIO_USER_BUCKET,
   MINIO_RESTAURANT_BUCKET: env.MINIO_RESTAURANT_BUCKET,
-  TEMP_UPLOAD_DIR: env.TEMP_UPLOAD_DIR,
+  TEMP_UPLOAD_DIR: path.join(
+    __dirname,
+    `../${env.TEMP_UPLOAD_DIR}` || '../uploads'
+  ),
 
   ALLOWED_ORIGINS: ['http://localhost:3000', 'http://0.0.0.0:3000'],
 
