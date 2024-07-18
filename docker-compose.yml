@@ -21,15 +21,16 @@ services:
     container_name: minio
     restart: always
     environment:
-      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
-      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
       - minio-data:/data
     ports:
       - "${MINIO_PORT}:9000"
+      - "${MINIO_WEB_PORT}:9001"
     networks:
       - mongo_net
-    command: server /data
+    command: server /data --console-address :9001
 
 volumes:
   mongo-data:
