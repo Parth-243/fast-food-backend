@@ -1,4 +1,6 @@
 const Food = require('../../../models/food');
+const Restaurant = require('../../../models/restaurant');
+const FoodCategory = require('../../../models/foodCategory');
 const {
   uploadFiles,
   deleteFile,
@@ -16,11 +18,72 @@ exports.createFood = async (req, res) => {
   }
 };
 
-// Get all foods
-exports.getAllFoods = async (req, res) => {
+exports.getFoodsByCategories = async (req, res) => {
+  const { restaurantId, foodCategoryId } = req.query;
+
   try {
-    const foods = await Food.find();
-    res.status(200).send(foods);
+    // Validate and find restaurant
+    const restaurant = await Restaurant.findById(restaurantId);
+    if (!restaurant) {
+      return res.status(404).send({ error: 'Restaurant not found' });
+    }
+
+    // Validate and find food category if provided
+    if (foodCategoryId) {
+      const foodCategory = await FoodCategory.findById(foodCategoryId);
+      if (!foodCategory) {
+        return res.status(404).send({ error: 'Food Category not found' });
+      }
+    }
+
+    // Build query based on the provided filters
+    const query = { restaurantId };
+    if (foodCategoryId) {
+      query.foodCategoryId = foodCategoryId;
+    }
+
+    const foods = await Food.find(query).populate(
+      'restaurantId foodCategoryId'
+    );
+
+    // Transform the data into the desired format
+    const result = foods.reduce((acc, food) => {
+      const {
+        _id: categoryId,
+        name: categoryName,
+        description,
+        picture,
+      } = food.foodCategoryId;
+      const foodData = {
+        name: food.name,
+        description: food.description,
+        price: food.price,
+        picture: food.picture,
+      };
+
+      // Check if the category already exists in the accumulator
+      const categoryIndex = acc.findIndex(
+        (item) => item.categoryId.toString() === categoryId.toString()
+      );
+      if (categoryIndex > -1) {
+        // If category exists, add the food to the existing category
+        acc[categoryIndex].foods.push(foodData);
+      } else {
+        // If category does not exist, create a new entry for the category
+        acc.push({
+          categoryId,
+          categoryName,
+          description,
+          picture,
+          restaurantId: food.restaurantId._id,
+          foods: [foodData],
+        });
+      }
+
+      return acc;
+    }, []);
+
+    res.status(200).send(result);
   } catch (error) {
     res.status(422).send({ error: error.message });
   }
