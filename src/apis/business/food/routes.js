@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const controller = require('./controller');
-const { validateCreateFood, validateUpdateFood } = require('./validator');
+const {
+  validateCreateFood,
+  validateUpdateFood,
+  validateGetFoodsByCategories,
+} = require('./validator');
 const authenticateBUser = require('../../../middleware/authenticateBUser');
 const createMulterConfig = require('../../../middleware/multerConfig');
 const {
@@ -21,7 +25,7 @@ router.use(authenticateBUser);
 router.post('/', validateCreateFood, controller.createFood);
 
 // Get all food categories
-router.get('/', controller.getAllFoods);
+router.get('/', validateGetFoodsByCategories, controller.getFoodsByCategories);
 
 // Get a single food by ID
 router.get('/:id', controller.getFoodById);
