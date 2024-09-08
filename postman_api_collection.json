@@ -1,0 +1,933 @@
+{
+	"info": {
+		"_postman_id": "5bc1fb24-444c-4606-a856-2b8a31de4966",
+		"name": "FFB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28414996"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{uri}}/",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "User Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"VishalNagda2\",\n    \"email\": \"VishalNagda2@Gmail.CoM\",\n    \"password\": \"12345678A!\",\n    \"confirmPassword\": \"12345678A!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/users/auth/register",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"username\": \"VishalNagda2\",\n    \"email\": \"VishalNagda1@Gmail.CoM\",\n    \"password\": \"12345678A!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/users/auth/login",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Current User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/users/auth/user",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"auth",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/users/auth/logout",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Create Profile",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Vishal\",\n    \"lastName\": \"Nagda\",\n    \"dob\": \"1993-05-23\",\n    \"gender\": \"male\",\n    \"mobile\": \"7737986479\",\n    \"address\": \"The street\",\n    \"state\": \"Rajasthan\",\n    \"city\": \"Udaipur\",\n    \"postalCode\": \"313001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/users/profile",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/users/profile",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Vishal\",\n    \"lastName\": \"Nagda\",\n    \"dob\": \"1993-05-23\",\n    \"gender\": \"male\",\n    \"mobile\": \"7737986479\",\n    \"address\": \"The street\",\n    \"state\": \"Rajasthan\",\n    \"city\": \"Udaipur\",\n    \"postalCode\": \"313001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/users/profile",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload Profile Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/vishal/Downloads/vishal.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{uri}}/users/profile/picture",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"users",
+										"profile",
+										"picture"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Business",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "B User Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"VishalNagda2\",\n    \"email\": \"VishalNagda2@Gmail.CoM\",\n    \"password\": \"12345678A!\",\n    \"confirmPassword\": \"12345678A!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/business/auth/register",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "B User Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"username\": \"VishalNagda2\",\n    \"email\": \"VishalNagda2@Gmail.CoM\",\n    \"password\": \"12345678A!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/business/auth/login",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Current User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/auth/user",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"auth",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "B User Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/auth/logout",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Restaurant",
+					"item": [
+						{
+							"name": "Restaurant Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Dil Punjabi\",\n    \"description\": \"Sadda Dil Punjabi\",\n    \"mobile\": \"+917737986479\",\n    \"opensAt\": \"10:30\",\n    \"closesAt\": \"22:30\",\n    \"address\": \"The street\",\n    \"state\": \"Rajasthan\",\n    \"city\": \"Udaipur\",\n    \"postalCode\": \"313001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/business/restaurant",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"restaurant"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Restaurants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/restaurant",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"restaurant"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Restaurant By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/restaurant/6698170576d72342f41c187f",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"restaurant",
+										"6698170576d72342f41c187f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Restaurant",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Name of A Restaurant\",\n    \"mobile\": \"+917737986479\",\n    \"opensAt\": \"10:30\",\n    \"closesAt\": \"22:30\",\n    \"address\": \"The street\",\n    \"state\": \"Rajasthan\",\n    \"city\": \"Udaipur\",\n    \"postalCode\": \"313001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/business/restaurant/66936f00b6df6bb4423904e4",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"restaurant",
+										"66936f00b6df6bb4423904e4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload Restaurant Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/vishal/dev/fff/public/alfresco-seating.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{uri}}/business/restaurant/picture/6694500a97a5918d8a7b2279",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"restaurant",
+										"picture",
+										"6694500a97a5918d8a7b2279"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Food Category",
+					"item": [
+						{
+							"name": "Get All Food Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/food-categories",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Food Category By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/food-categories/6698174076d72342f41c1888",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food-categories",
+										"6698174076d72342f41c1888"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Food",
+					"item": [
+						{
+							"name": "Create Food",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"restaurantId\": \"6698170576d72342f41c187f\",\n    \"foodCategoryId\": \"66a536174d9bf09bd856e813\",\n    \"name\": \"Veg Tikki Burger\",\n    \"description\": \"Veg Indian Tikki Burger\",\n    \"price\": \"199\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/business/food",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Food",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/food?restaurantId=6698170576d72342f41c187f",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food"
+									],
+									"query": [
+										{
+											"key": "restaurantId",
+											"value": "6698170576d72342f41c187f",
+											"description": "Required"
+										},
+										{
+											"key": "foodCategoryId",
+											"value": "6698174076d72342f41c1888",
+											"description": "Optional",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Food By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/business/food/66942a3aa2bc9ee81c6e6d8f",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food",
+										"66942a3aa2bc9ee81c6e6d8f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Food",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Burger\",\n    \"description\": \"Cheese burger\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/business/food/66942a3aa2bc9ee81c6e6d8f",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food",
+										"66942a3aa2bc9ee81c6e6d8f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/vishal/dev/fff/public/Pizza.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{uri}}/business/food/picture/669818f731b0f2f9b8288899",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"business",
+										"food",
+										"picture",
+										"669818f731b0f2f9b8288899"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Admin Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"admin1\",\n    \"email\": \"admin1@fastfood.com\",\n    \"password\": \"12345678A!\",\n    \"confirmPassword\": \"12345678A!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/admin/auth/register",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    // \"username\": \"VishalNagda2\",\n    \"email\": \"admin1@fastfood.coM\",\n    \"password\": \"12345678A!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/admin/auth/login",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Current User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/admin/auth/user",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Admin Logout",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/admin/auth/logout",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Food Category",
+					"item": [
+						{
+							"name": "Create Food Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Pizza\",\n    \"description\": \"Veg cheese burst pizza\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/admin/food-categories",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"food-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Food Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/admin/food-categories",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"food-categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Food Category By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/admin/food-categories/66942a3aa2bc9ee81c6e6d8f",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"food-categories",
+										"66942a3aa2bc9ee81c6e6d8f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Food Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Burger\",\n    \"description\": \"Cheese burger\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{uri}}/admin/food-categories/66942a3aa2bc9ee81c6e6d8f",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"food-categories",
+										"66942a3aa2bc9ee81c6e6d8f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upload Category Picture",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/vishal/Desktop/Fast_Food_Project/Fast_Food_Frontend/public/Pizza.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{uri}}/admin/food-categories/picture/6698174076d72342f41c1888",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"food-categories",
+										"picture",
+										"6698174076d72342f41c1888"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get All Customers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/admin/users/customers",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"customers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Restaurant",
+					"item": [
+						{
+							"name": "Get All Restaurants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{uri}}/admin/restaurants",
+									"host": [
+										"{{uri}}"
+									],
+									"path": [
+										"admin",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
