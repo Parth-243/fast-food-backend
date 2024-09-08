@@ -43,7 +43,7 @@ The backend uses **JWT-based authentication** for secure access, with role-based
 
 1. **Clone the Repository**
    ```bash
-   git clone git@github.com:vishalnagda1/fast-food-backend.git
+   git clone git@github.com:Parth-243/fast-food-backend.git
    cd fast-food-backend
    ```
 
